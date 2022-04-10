@@ -1,5 +1,5 @@
 岛屿问题是一类经典的网格搜索类问题，参考Leetcode 200（岛屿数量）,1905（统计子岛屿）,463（岛屿的周长）,695（岛屿的最大面积）,1254（统计封闭岛屿的数目）
-常用的求解方法是深度优先搜索或广度优先搜索，然后根据具体问题求解；
+常用的求解方法是深度优先搜索或广度优先搜索，然后根据具体问题求解，参考https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/
 方法1：深度优先搜索（DFS）模板
 void dfs(vector<vector<int>>&grid,int m,int n){
   if(m<0 || n<0 || m>=grid.size() || n>=grid[0].size()){
