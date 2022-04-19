@@ -1,0 +1,64 @@
+/*map 排序学习（按key，按value)
+ * map默认情况下，按照key值从小到大排序map<int,int,less>，从大到下则为map<int,int,greater>
+ * 按照value进行排序的三种方式：1.借助vector 2.重写operator 3.自定义结构体自定义排序
+ */
+/*方式1：借助vector*/
+bool comp1(const pair<int,int> &p1,const pair<int,int>&p2){
+    return p1.second>p2.second;
+}
+void sortMapByVector(){
+    vector<pair<int,int>> ve;
+    map<int,int> mmp;
+    mmp[1]=2;
+    mmp[2]=3;
+    mmp[3]=4;
+    for(auto au:mmp){
+        ve.push_back({au.first,au.second});
+    }
+    sort(ve.begin(),ve.end(), comp1);
+    for(auto au:ve){
+        cout<< au.first <<" " << au.second << endl;
+    }
+}
+/*方式2：重写operator*/
+struct comp2{
+    bool operator()(const pair<int,int> &p1,const pair<int,int> &p2){
+        return p1.second>p2.second;
+    }
+};
+void sortMapByOperator(){
+    map<pair<int,int>,int,comp2> mmp;
+    mmp[{1,2}]=2;
+    mmp[{2,3}]=3;
+    mmp[{3,4}]=4;
+    for(auto au:mmp){
+        cout<< au.first.first <<" " << au.first.second << " " << au.second<< endl;
+    }
+}
+/*自定义结构体判断*/
+struct studentInfo{
+    int id;
+    string name;
+    bool operator<(studentInfo const &s1) const{
+        return s1.name<name;
+    }
+};
+void mapSortStudentInfoBySelfDefine(){
+    map<studentInfo,int> mmp;
+    studentInfo studentInfo1;
+    studentInfo1.id=1;
+    studentInfo1.name="a";
+    mmp[studentInfo1]=50;
+    studentInfo studentInfo2;
+    studentInfo2.id=2;
+    studentInfo2.name="b";
+    mmp[studentInfo2]=99;
+    for(auto au:mmp){
+        cout<<au.first.id << " " << au.first.name << " "<< au.second<< endl;
+    }
+}
+int main(){
+    sortMapByVector(); //方式1
+    sortMapByOperator(); //方式2
+    mapSortStudentInfoBySelfDefine(); //方式3
+}
